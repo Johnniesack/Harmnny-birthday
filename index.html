@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Harmony 🎉</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fad0c4);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 3rem;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 145, 164, 0.6);
+      position: relative;
+      max-width: 90%;
+      width: 600px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .card h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      color: #ff5e78;
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 2rem;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: gold;
+      border-radius: 50%;
+      animation: sparkle 4s infinite ease-in-out;
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0);
+        opacity: 0;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: #ff5e78;
+      animation: float 6s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.6);
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-20vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .music-btn {
+      background: #ff5e78;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .music-btn:hover {
+      background: #e14e68;
+    }
+    
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Mobile responsiveness */
+    @media screen and (max-width: 768px) {
+      .card {
+        padding: 2rem;
+        width: 90%;
+        max-width: 400px;
+      }
+      
+      .card h1 {
+        font-size: 2.5rem;
+      }
+      
+      .card p {
+        font-size: 1rem;
+      }
+      
+      .heart {
+        font-size: 16px;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .card {
+        padding: 1.5rem;
+      }
+      
+      .card h1 {
+        font-size: 2rem;
+      }
+      
+      .card p {
+        font-size: 0.9rem;
+      }
+      
+      .music-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Happy Birthday, Harmony! 🎂</h1>
+    <p>
+      To the most beautiful soul I've ever known, <br/>
+      You bring light to my world, joy to my heart, and love beyond words. <br/>
+      On your special day, I just want you to know how deeply cherished and loved you are. <br/>
+      May your year be filled with magic, wonder, and everything your heart desires. 💖
+    </p>
+    <button id="musicBtn" class="music-btn">Play Music 🎵</button>
+  </div>
+
+  <audio id="bgMusic" src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" loop></audio>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const music = document.getElementById('bgMusic');
+      const musicBtn = document.getElementById('musicBtn');
+      music.volume = 0.5;
+      
+      // Play button click handler
+      musicBtn.addEventListener('click', function() {
+        music.play()
+          .then(() => {
+            console.log('Music playing successfully');
+            musicBtn.textContent = 'Playing... 🎵';
+            musicBtn.disabled = true;
+            musicBtn.style.opacity = '0.7';
+          })
+          .catch(error => {
+            console.log('Play failed:', error);
+          });
+      });
+    });
+
+    // Generate sparkles
+    for (let i = 0; i < 40; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.top = `${Math.random() * 100}vh`;
+      sparkle.style.left = `${Math.random() * 100}vw`;
+      sparkle.style.animationDelay = `${Math.random() * 5}s`;
+      document.body.appendChild(sparkle);
+    }
+
+    // Generate floating hearts
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDelay = `${Math.random() * 8}s`;
+      heart.style.animationDuration = `${6 + Math.random() * 6}s`;
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
